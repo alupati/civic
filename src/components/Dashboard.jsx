@@ -365,7 +365,21 @@ const PostIssueModal = ({ isOpen, onClose, onPost, issues = [] }) => {
                         </div>
                     )}
 
-                    <button type="submit" className="btn-primary" disabled={analyzing} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '14px', opacity: analyzing ? 0.7 : 1 }}>
+                    <button
+                        type="submit"
+                        className="btn-primary"
+                        disabled={analyzing || !image || !desc.trim()}
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            padding: '14px',
+                            opacity: (analyzing || !image || !desc.trim()) ? 0.6 : 1,
+                            cursor: (analyzing || !image || !desc.trim()) ? 'not-allowed' : 'pointer'
+                        }}
+                    >
                         {analyzing ? <><Camera size={18} className="spin" /> {status || 'Analyzing...'}</> : <><Send size={18} /> Submit Issue</>}
                     </button>
                 </form>
